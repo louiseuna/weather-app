@@ -58,6 +58,22 @@ function formatDate(now) {
 
 dateTime.innerHTML = formatDate(now);
 
+function getForecastDays() {
+  let days = [
+    `Sunday`,
+    `Monday`,
+    `Tuesday`,
+    `Wednesday`,
+    `Thursday`,
+    `Friday`,
+    `Saturday`,
+  ];
+  let day = days[now.getDay()];
+
+  let day0 = document.querySelector("#card0");
+  console.log(day0);
+}
+
 //Interchanging temperature units
 function farenheit(event) {
   event.preventDefault();

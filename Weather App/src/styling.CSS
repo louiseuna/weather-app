@@ -62,9 +62,7 @@ h1.currentTemp {
   font-size: 52px;
   text-align: center;
 }
-h1.cityDisplay {
-  text-align: left;
-}
+
 .description {
   text-transform: capitalize;
 }
@@ -120,7 +118,10 @@ h2.dateTime {
   margin-top: 2%;
 }
 .currentWeather {
-  margin-top: 5%;
+  margin-top: 3%;
+}
+.forecast {
+  margin-top: 1%;
 }
 .cardForecast {
   display: block;
