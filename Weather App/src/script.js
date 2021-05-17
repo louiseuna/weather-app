@@ -116,6 +116,8 @@ function showWeather(response) {
   feelsLike.innerHTML = `Feels like ${feelsLikeTemp}`;
   max.innerHTML = `${high}`;
   min.innerHTML = ` ${low}`;
+
+  getForecast(response);
 }
 
 //Display city on load
@@ -158,3 +160,7 @@ let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getPosition);
 
 searchCity("London");
+
+function getForecast(response) {
+  console.log(response);
+}
