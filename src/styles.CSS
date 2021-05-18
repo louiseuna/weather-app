@@ -57,11 +57,28 @@ button.currentLocation:hover {
   color: #51dacf;
 }
 
+h2.dateTime {
+  font-size: 28px;
+  font-family: "Roboto", sans-serif;
+  margin-top: 2%;
+  margin-bottom: 3%;
+}
+
 h1.cityDisplay,
 h1.currentTemp {
   font-weight: bolder;
-  font-size: 52px;
-  text-align: center;
+  font-size: 46px;
+  text-align: left;
+}
+
+h1.currentTemp,
+.units {
+  font-size: 46px;
+  text-align: left;
+}
+
+.icon {
+  text-align: right;
 }
 
 .description {
@@ -69,7 +86,7 @@ h1.currentTemp {
 }
 
 span.units {
-  font-size: 24px;
+  font-size: 20px;
   position: relative;
   top: -26px;
   word-spacing: 0;
@@ -93,19 +110,13 @@ a.changeUnit:hover {
 .details {
   font-family: "Roboto", sans-serif;
   list-style-type: none;
-  text-align: left;
+  text-align: right;
+  font-size: 26px;
 }
 
 /* .currentWeatherIcon {
   margin-left: 20%;
 } */
-
-h2.dateTime {
-  font-size: 32px;
-  font-family: "Roboto", sans-serif;
-  margin-top: 2%;
-  margin-bottom: 3%;
-}
 
 .cardForecast {
   display: block;
@@ -144,17 +155,18 @@ h2.dateTime {
 }
 
 .end {
-  color: #51dacf;
+  color: #000;
   text-align: center;
   font-family: "Lato", sans-serif;
   font-size: 18px;
   margin-top: 0%;
+  font-weight: bold;
 }
 
 .myProfile {
   text-align: center;
   text-decoration: underline;
-  color: #51dacf;
+  color: #000;
 }
 .myProfile:hover {
   color: #e8ffb1;

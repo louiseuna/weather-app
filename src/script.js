@@ -97,7 +97,7 @@ function showWeather(response) {
   let currentTemp = Math.floor(response.data.main.temp);
 
   let description = document.querySelector("#description");
-  let weatherdescription = response.data.weather[0].main;
+  let weatherdescription = response.data.weather[0].description;
 
   let feelsLike = document.querySelector("#feels-like");
   let feelsLikeTemp = Math.floor(response.data.main.feels_like);
@@ -112,6 +112,15 @@ function showWeather(response) {
   feelsLike.innerHTML = `Feels like ${feelsLikeTemp}`;
   max.innerHTML = `${high}`;
   min.innerHTML = ` ${low}`;
+
+  let iconElement = document.querySelector("#icon");
+  console.log(response.data.weather[0].icon);
+  iconElement.innerHTML = response.data.weather[0].icon;
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 
   getForecast(response);
 }
