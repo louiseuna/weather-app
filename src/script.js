@@ -63,8 +63,6 @@ function farenheit(event) {
   event.preventDefault();
   let tempDisplay = document.querySelector("#current-temp");
   tempDisplay.innerHTML = `54`;
-  let toFarenheit = document.querySelector("#small-celsius");
-  toFarenheit.innerHTML = `°F`;
 }
 let farenheitUnit = document.querySelector("#farenheit-link");
 
@@ -74,8 +72,6 @@ function celsius(event) {
   event.preventDefault();
   let tempDisplay = document.querySelector("#current-temp");
   tempDisplay.innerHTML = `12`;
-  let toCelsius = document.querySelector("#small-celsius");
-  toCelsius.innerHTML = `°C`;
 }
 let celsiusUnit = document.querySelector("#celsius-link");
 
