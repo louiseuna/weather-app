@@ -21,6 +21,11 @@
       href="https://fonts.googleapis.com/css2?family=PT+Mono&family=Poppins:wght@200;400&family=Roboto&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Raleway&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>⛅ Weather App</title>
   </head>
@@ -28,88 +33,89 @@
     <div class="container">
       <!-- <div class="card">
         <div class="card-body"> -->
+      <div class="appContainer">
+        <form id="search-form">
+          <div class="row topRow align-items-center">
+            <div class="col-6">
+              <input
+                type="text"
+                class="form-control"
+                autocomplete="off"
+                autofocus="on"
+                id="input-city"
+                placeholder="Search for a City..."
+              />
+            </div>
 
-      <form id="search-form">
-        <div class="row topRow align-items-center">
-          <div class="col-6">
-            <input
-              type="text"
-              class="form-control"
-              autocomplete="off"
-              autofocus="on"
-              id="input-city"
-              placeholder="Search for a City..."
-            />
+            <div class="col-3">
+              <button class="search">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+
+            <div class="col-3">
+              <button class="currentLocation" id="current-location-button">
+                <i class="fas fa-map-marked-alt"></i>
+              </button>
+            </div>
           </div>
+        </form>
 
-          <div class="col-3">
-            <button class="search">
-              <i class="fas fa-search"></i>
-            </button>
+        <h2 class="dateTime" id="current-date-time"></h2>
+        <div class="row align-items-center currentWeather">
+          <h1 class="col-5 cityDisplay" id="city-display"></h1>
+          <h1 class="col-3 currentTemp">
+            <span id="current-temp"></span
+            ><span class="units"
+              ><a href="#" class="changeUnit" id="celsius-link">°C</a> |
+              <a href="#" class="changeUnit" id="farenheit-link">°F</a></span
+            >
+            <!-- <i class="fas fa-cloud-sun weatherIcon cloudy currentWeatherIcon"></i> -->
+          </h1>
+          <h3 class="col-4">
+            <ul class="details align-items-center">
+              <li class="description" id="description"></li>
+              <li><span id="feels-like">Feels like 12</span>°</li>
+              <li>
+                <i class="fas fa-temperature-high"></i>
+                <span id="high">12</span>° |<span id="low">8</span>°
+                <i class="fas fa-temperature-low"></i>
+              </li>
+            </ul>
+          </h3>
+        </div>
+
+        <div class="row forecast">
+          <div class="col-2 row cardForecast" id="card0">
+            Wed<i class="fas fa-sun weatherIcon sun"></i
+            ><span class="forecastInfo"
+              ><span id="high0">16</span>° | <span id="low0">8</span>°</span
+            >
           </div>
-
-          <div class="col-3">
-            <button class="currentLocation" id="current-location-button">
-              <i class="fas fa-map-marked-alt"></i>
-            </button>
+          <div class="col-2 row cardForecast" id="card1">
+            Thurs<i class="fas fa-sun weatherIcon sun"></i
+            ><span class="forecastInfo"
+              ><span id="high1">12</span>° | <span id="low1">7</span>°</span
+            >
           </div>
-        </div>
-      </form>
-
-      <h2 class="dateTime" id="current-date-time"></h2>
-      <div class="row align-items-center currentWeather">
-        <h1 class="col-5 cityDisplay" id="city-display"></h1>
-        <h1 class="col-3 currentTemp">
-          <span id="current-temp"></span
-          ><span class="units"
-            ><a href="#" class="changeUnit" id="celsius-link">°C</a> |
-            <a href="#" class="changeUnit" id="farenheit-link">°F</a></span
-          >
-          <!-- <i class="fas fa-cloud-sun weatherIcon cloudy currentWeatherIcon"></i> -->
-        </h1>
-        <h3 class="col-4">
-          <ul class="details align-items-center">
-            <li class="description" id="description"></li>
-            <li><span id="feels-like">Feels like 12</span>°</li>
-            <li>
-              <i class="fas fa-temperature-high"></i> <span id="high">12</span>°
-              |<span id="low">8</span>°
-              <i class="fas fa-temperature-low"></i>
-            </li>
-          </ul>
-        </h3>
-      </div>
-
-      <div class="row forecast">
-        <div class="col-2 row cardForecast" id="card0">
-          Wed<i class="fas fa-sun weatherIcon sun"></i
-          ><span class="forecastInfo"
-            ><span id="high0">16</span>° | <span id="low0">8</span>°</span
-          >
-        </div>
-        <div class="col-2 row cardForecast" id="card1">
-          Thurs<i class="fas fa-sun weatherIcon sun"></i
-          ><span class="forecastInfo"
-            ><span id="high1">12</span>° | <span id="low1">7</span>°</span
-          >
-        </div>
-        <div class="col-2 row cardForecast" id="card2">
-          Fri<i class="fas fa-cloud-sun weatherIcon cloudy"></i
-          ><span class="forecastInfo"
-            ><span id="high2">10</span>° | <span id="low2">5</span>°</span
-          >
-        </div>
-        <div class="col-2 row cardForecast" id="card3">
-          Sat<i class="fas fa-cloud-rain weatherIcon rainy"></i
-          ><span class="forecastInfo"
-            ><span id="high3">5</span>° | <span id="low3">3</span>°</span
-          >
-        </div>
-        <div class="col-2 row cardForecast" id="card4">
-          Sun<i class="fas fa-cloud weatherIcon cloudy"></i
-          ><span class="forecastInfo"
-            ><span id="high4">9</span>° | <span id="low4">4</span>°</span
-          >
+          <div class="col-2 row cardForecast" id="card2">
+            Fri<i class="fas fa-cloud-sun weatherIcon cloudy"></i
+            ><span class="forecastInfo"
+              ><span id="high2">10</span>° | <span id="low2">5</span>°</span
+            >
+          </div>
+          <div class="col-2 row cardForecast" id="card3">
+            Sat<i class="fas fa-cloud-rain weatherIcon rainy"></i
+            ><span class="forecastInfo"
+              ><span id="high3">5</span>° | <span id="low3">3</span>°</span
+            >
+          </div>
+          <div class="col-2 row cardForecast" id="card4">
+            Sun<i class="fas fa-cloud weatherIcon cloudy"></i
+            ><span class="forecastInfo"
+              ><span id="high4">9</span>° | <span id="low4">4</span>°</span
+            >
+          </div>
         </div>
       </div>
       <p class="end">
@@ -119,7 +125,7 @@
           class="myProfile end"
           >Open-source code</a
         >
-        by
+        , by
         <a
           href="https://www.linkedin.com/in/louise-dicks-27b352181/"
           target="_blank"
