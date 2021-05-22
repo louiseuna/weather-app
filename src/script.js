@@ -75,6 +75,7 @@ function showWeather(response) {
   ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 
   celsiusTemperature = response.data.main.temp;
+  feelsLikeTemperature = response.data.main.feels_like;
 
   let temp = document.querySelector("#current-temp");
   let currentTemp = Math.floor(celsiusTemperature);
@@ -83,7 +84,7 @@ function showWeather(response) {
   let weatherDescription = response.data.weather[0].description;
 
   let feelsLike = document.querySelector("#feels-like");
-  let feelsLikeTemp = Math.floor(response.data.main.feels_like);
+  let feelsLikeTemp = Math.floor(feelsLikeTemperature);
 
   let humidity = document.querySelector("#humidity");
   let showHumidity = response.data.main.humidity;
@@ -163,21 +164,29 @@ function getForecast(response) {
 //Interchanging temperature units
 function farenheit(event) {
   event.preventDefault();
-  let tempDisplay = document.querySelector("#current-temp");
   let farenheitTemp = Math.floor((celsiusTemperature * 9) / 5 + 32);
   celsiusUnit.classList.remove("active");
   farenheitUnit.classList.add("active");
-  tempDisplay.innerHTML = `${farenheitTemp}`;
+
+  document.querySelector("#current-temp").innerHTML = `${farenheitTemp}`;
+  document.querySelector("#feels-like").innerHTML = `Feels like ${Math.floor(
+    (feelsLikeTemperature * 9) / 5 + 32
+  )}`;
 }
 
 function celsius(event) {
   event.preventDefault();
-  let tempDisplay = document.querySelector("#current-temp");
   farenheitUnit.classList.remove("active");
   celsiusUnit.classList.add("active");
-  tempDisplay.innerHTML = Math.floor(celsiusTemperature);
+
+  document.querySelector("#feels-like").innerHTML = `Feels like ${Math.floor(
+    feelsLikeTemperature
+  )}`;
+  document.querySelector("#current-temp").innerHTML =
+    Math.floor(celsiusTemperature);
 }
 celsiusTemperature = null;
+feelsLikeTemperature = null;
 
 let farenheitUnit = document.querySelector("#farenheit-link");
 farenheitUnit.addEventListener("click", farenheit);
