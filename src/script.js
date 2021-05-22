@@ -80,10 +80,16 @@ function showWeather(response) {
   let currentTemp = Math.floor(celsiusTemperature);
 
   let description = document.querySelector("#description");
-  let weatherdescription = response.data.weather[0].description;
+  let weatherDescription = response.data.weather[0].description;
 
   let feelsLike = document.querySelector("#feels-like");
   let feelsLikeTemp = Math.floor(response.data.main.feels_like);
+
+  let humidity = document.querySelector("#humidity");
+  let showHumidity = response.data.main.humidity;
+
+  let windSpeed = document.querySelector("#wind-speed");
+  let showWindSpeed = Math.floor(response.data.wind.speed);
 
   let max = document.querySelector("#high");
   let min = document.querySelector("#low");
@@ -91,8 +97,10 @@ function showWeather(response) {
   let low = Math.floor(response.data.main.temp_min);
 
   temp.innerHTML = `${currentTemp}`;
-  description.innerHTML = `${weatherdescription}`;
+  description.innerHTML = `${weatherDescription}`;
   feelsLike.innerHTML = `Feels like ${feelsLikeTemp}`;
+  humidity.innerHTML = `Humidity: ${showHumidity}`;
+  windSpeed.innerHTML = `Windspeed: ${showWindSpeed}`;
   max.innerHTML = `${high}`;
   min.innerHTML = ` ${low}`;
 
@@ -157,13 +165,16 @@ function farenheit(event) {
   event.preventDefault();
   let tempDisplay = document.querySelector("#current-temp");
   let farenheitTemp = Math.floor((celsiusTemperature * 9) / 5 + 32);
-
+  celsiusUnit.classList.remove("active");
+  farenheitUnit.classList.add("active");
   tempDisplay.innerHTML = `${farenheitTemp}`;
 }
 
 function celsius(event) {
   event.preventDefault();
   let tempDisplay = document.querySelector("#current-temp");
+  farenheitUnit.classList.remove("active");
+  celsiusUnit.classList.add("active");
   tempDisplay.innerHTML = Math.floor(celsiusTemperature);
 }
 celsiusTemperature = null;

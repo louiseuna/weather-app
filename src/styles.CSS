@@ -92,16 +92,21 @@ span.units {
   word-spacing: 0;
   font-weight: bold;
 }
-
-.forecastInfo {
-  word-spacing: 0px;
-  text-align: center;
+.units .active {
+  color: #000;
+  cursor: default;
+  text-decoration: none;
 }
+
+.units .active:hover {
+  text-decoration: none;
+}
+
 a {
   color: #000;
   text-decoration: none;
 }
-a.changeUnit:hover {
+a:hover {
   text-decoration: underline;
   color: #51dacf;
   cursor: pointer;
@@ -111,7 +116,7 @@ a.changeUnit:hover {
   font-family: "Roboto", sans-serif;
   list-style-type: none;
   text-align: right;
-  font-size: 26px;
+  font-size: 20px;
 }
 
 /* .currentWeatherIcon {
