@@ -58,25 +58,6 @@ function formatDate(now) {
 
 dateTime.innerHTML = formatDate(now);
 
-//Interchanging temperature units
-function farenheit(event) {
-  event.preventDefault();
-  let tempDisplay = document.querySelector("#current-temp");
-  tempDisplay.innerHTML = `54`;
-}
-let farenheitUnit = document.querySelector("#farenheit-link");
-
-farenheitUnit.addEventListener("click", farenheit);
-
-function celsius(event) {
-  event.preventDefault();
-  let tempDisplay = document.querySelector("#current-temp");
-  tempDisplay.innerHTML = `12`;
-}
-let celsiusUnit = document.querySelector("#celsius-link");
-
-celsiusUnit.addEventListener("click", celsius);
-
 //Display city entered
 function handleSubmit(event) {
   event.preventDefault();
@@ -93,8 +74,10 @@ function showWeather(response) {
     "#city-display"
   ).innerHTML = `${response.data.name}, ${response.data.sys.country}`;
 
+  celsiusTemperature = response.data.main.temp;
+
   let temp = document.querySelector("#current-temp");
-  let currentTemp = Math.floor(response.data.main.temp);
+  let currentTemp = Math.floor(celsiusTemperature);
 
   let description = document.querySelector("#description");
   let weatherdescription = response.data.weather[0].description;
@@ -102,10 +85,10 @@ function showWeather(response) {
   let feelsLike = document.querySelector("#feels-like");
   let feelsLikeTemp = Math.floor(response.data.main.feels_like);
 
-  let high = Math.floor(response.data.main.temp_max);
-  let low = Math.floor(response.data.main.temp_min);
   let max = document.querySelector("#high");
   let min = document.querySelector("#low");
+  let high = Math.floor(response.data.main.temp_max);
+  let low = Math.floor(response.data.main.temp_min);
 
   temp.innerHTML = `${currentTemp}`;
   description.innerHTML = `${weatherdescription}`;
@@ -114,7 +97,6 @@ function showWeather(response) {
   min.innerHTML = ` ${low}`;
 
   let iconElement = document.querySelector("#icon");
-  console.log(response.data.weather[0].icon);
   iconElement.innerHTML = response.data.weather[0].icon;
   iconElement.setAttribute(
     "src",
@@ -169,3 +151,25 @@ searchCity("London");
 function getForecast(response) {
   console.log(response);
 }
+
+//Interchanging temperature units
+function farenheit(event) {
+  event.preventDefault();
+  let tempDisplay = document.querySelector("#current-temp");
+  let farenheitTemp = Math.floor((celsiusTemperature * 9) / 5 + 32);
+
+  tempDisplay.innerHTML = `${farenheitTemp}`;
+}
+
+function celsius(event) {
+  event.preventDefault();
+  let tempDisplay = document.querySelector("#current-temp");
+  tempDisplay.innerHTML = Math.floor(celsiusTemperature);
+}
+celsiusTemperature = null;
+
+let farenheitUnit = document.querySelector("#farenheit-link");
+farenheitUnit.addEventListener("click", farenheit);
+
+let celsiusUnit = document.querySelector("#celsius-link");
+celsiusUnit.addEventListener("click", celsius);
