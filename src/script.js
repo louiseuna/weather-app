@@ -113,7 +113,7 @@ function showWeather(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
-  getForecast(response);
+  getForecast(response.data.coord);
 }
 
 //Display city on load
@@ -156,9 +156,40 @@ let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getPosition);
 
 searchCity("London");
+displayForecast();
 
-function getForecast(response) {
-  console.log(response);
+function displayForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+          <div class="col-2  cardForecast">
+            <div id="forecastCard">
+              <div class="forecastDate">${day}</div>
+              <div class="icon"><i class="fas fa-sun sun"></i></div>
+              <div class="forecastTemperature">
+                <span id="forecastHigh">16°</span>|
+                <span class="forecastLow" id="forecastLow">8°</span>
+              </div>
+          </div>
+        </div>
+          `;
+  });
+
+  forecastHTML = forecastHTML + `</ div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = `a9f6c0e1b1497b25ded5be0fd029e8ec`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 //Interchanging temperature units

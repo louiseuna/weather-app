@@ -31,8 +31,6 @@
   </head>
   <body>
     <div class="container">
-      <!-- <div class="card">
-        <div class="card-body"> -->
       <div class="appContainer">
         <form id="search-form">
           <div class="row topRow align-items-center">
@@ -71,7 +69,6 @@
               ><a href="#" class="changeUnit active" id="celsius-link">°C</a> |
               <a href="#" class="changeUnit" id="farenheit-link">°F </a></span
             >
-            <!-- <i class="fas fa-cloud-sun weatherIcon cloudy currentWeatherIcon"></i> -->
           </h1>
           <span class="col-1 icon"
             ><img src="" alt="" id="icon" width="80px"
@@ -91,52 +88,21 @@
             </ul>
           </h3>
         </div>
-
-        <div class="row forecast">
-          <div class="col-2 cardForecast" id="card0">
-            <div class="day0">Wed</div>
-            <div class="icon0"><i class="fas fa-sun sun"></i></div>
-            <span class="forecastInfo"
-              ><div><span id="high0">16</span>° |
-              <span class="low" id="low0">8</span>°</span
-            ></div>
-          </div>
-          <div class="col-2 cardForecast" id="card1">
-            <div class="day1">Thurs</div>
-            <div class="icon1"><i class="fas fa-sun sun"></i></div>
-            <span class="forecastInfo"
-              ><div><span id="high1">12</span>° |
-              <span class="low" id="low1">7</span>°</span
-            ></div>
-          </div>
-          <div class="col-2 cardForecast" id="card2">
-            <div class="day2">Fri</div>
-            <div class="icon2"><i class="fas fa-cloud-sun cloudy"></i></div>
-            <span class="forecastInfo"
-              ><div><span id="high2">10</span>° |
-              <span class="low" id="low2">5</span>°</span
-            ></div>
-          </div>
-          <div class="col-2 cardForecast" id="card3">
-            <div class="day3">Sat</div>
-            <div class="icon3"><i class="fas fa-cloud-rain rainy"></i></div>
-            <span class="forecastInfo"
-              ><div><span id="high3">5</span>° |
-              <span class="low" id="low3">3</span>°</span
-            ></div>
-
-          </div>
-          <div class="col-2 cardForecast" id="card4">
-            <div class="day4">Sun</div>
-            <div class="icon4"><i class="fas fa-cloud cloudy"></i></div>
-            <span class="forecastInfo"
-              ><div><span id="high4">9</span>° |
-              <span class="low" id="low4">4</span>°</span
-            ></div>
-
+        <div id="weather-forecast">
+          <div class="row">
+          <div class="col-2  cardForecast">
+            <div id="forecastCard">
+              <div class="forecastDate">Wed</div>
+              <div class="icon"><i class="fas fa-sun sun"></i></div>
+              <div class="forecastTemperature">
+                <span id="forecastHigh">16°</span>|
+                <span class="forecastLow" id="forecastLow">8°</span>
+              </div>
           </div>
         </div>
-      </div>
+          </div>
+        </div>
+      
       <p class="end">
         <a
           href="https://github.com/louiseuna/weather-app"
@@ -153,9 +119,7 @@
           Louise Dicks
         </a>
       </p>
-      <!-- </div>
-    </div> -->
-    </div>
+   
 
     <script src="src/script.js"></script>
   </body>
