@@ -83,6 +83,11 @@ function showWeather(response) {
   let description = document.querySelector("#description");
   let weatherDescription = response.data.weather[0].description;
 
+  console.log(weatherDescription);
+  if (weatherDescription === "few clouds") {
+    document.body.style.backgroundImage = "url(`../images/cloudy.jpg`)";
+  }
+
   let feelsLike = document.querySelector("#feels-like");
   let feelsLikeTemp = Math.floor(feelsLikeTemperature);
 
