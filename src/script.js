@@ -86,11 +86,11 @@ function showWeather(response) {
   let feelsLike = document.querySelector("#feels-like");
   let feelsLikeTemp = Math.floor(feelsLikeTemperature);
 
-  let humidity = document.querySelector("#humidity");
-  let showHumidity = response.data.main.humidity;
+  // let humidity = document.querySelector("#humidity");
+  // let showHumidity = response.data.main.humidity;
 
-  let windSpeed = document.querySelector("#wind-speed");
-  let showWindSpeed = Math.floor(response.data.wind.speed);
+  // let windSpeed = document.querySelector("#wind-speed");
+  // let showWindSpeed = Math.floor(response.data.wind.speed);
 
   let max = document.querySelector("#high");
   let min = document.querySelector("#low");
@@ -100,8 +100,8 @@ function showWeather(response) {
   temp.innerHTML = `${currentTemp}`;
   description.innerHTML = `${weatherDescription}`;
   feelsLike.innerHTML = `Feels like ${feelsLikeTemp}`;
-  humidity.innerHTML = `Humidity: ${showHumidity}`;
-  windSpeed.innerHTML = `Windspeed: ${showWindSpeed}`;
+  // humidity.innerHTML = `Humidity: ${showHumidity}`;
+  // windSpeed.innerHTML = `Windspeed: ${showWindSpeed}`;
   max.innerHTML = `${high}`;
   min.innerHTML = ` ${low}`;
 
@@ -156,24 +156,43 @@ let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getPosition);
 
 searchCity("London");
-displayForecast();
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+//get and display Forecast
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  console.log(response);
+
   let forecastElement = document.querySelector("#weather-forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 6)
+      forecastHTML =
+        forecastHTML +
+        `
           <div class="col-2  cardForecast">
-            <div id="forecastCard">
-              <div class="forecastDate">${day}</div>
-              <div class="icon"><i class="fas fa-sun sun"></i></div>
+            <div id="forecast-card">
+              <div class="forecastDate" id="forecast-day">${formatDay(
+                forecastDay.dt
+              )}</div>
+            
+              <div class="icon" id="forecast-icon"><img src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png" alt="" width="42" /></div>
               <div class="forecastTemperature">
-                <span id="forecastHigh">16°</span>|
-                <span class="forecastLow" id="forecastLow">8°</span>
+                <span id="forecast-high">${Math.floor(
+                  forecastDay.temp.max
+                )}°</span>|
+                <span class="forecastLow" id="forecast-low">${Math.floor(
+                  forecastDay.temp.min
+                )}°</span>
               </div>
           </div>
         </div>
@@ -184,11 +203,11 @@ function displayForecast() {
 
   forecastElement.innerHTML = forecastHTML;
 }
+
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = `a9f6c0e1b1497b25ded5be0fd029e8ec`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
+
   axios.get(apiUrl).then(displayForecast);
 }
 
