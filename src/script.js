@@ -84,8 +84,29 @@ function showWeather(response) {
   let weatherDescription = response.data.weather[0].description;
 
   console.log(weatherDescription);
-  if (weatherDescription === "few clouds") {
-    document.body.style.backgroundImage = "url(`../images/cloudy.jpg`)";
+
+  if (
+    weatherDescription === "scattered clouds" ||
+    "few clouds" ||
+    "broken clouds" ||
+    "overcast clouds"
+  ) {
+    document.body.style.backgroundImage = `url("images/cloudy.jpg")`;
+  }
+  if (weatherDescription === "clear sky") {
+    document.body.style.backgroundImage = `url("images/sunnyday.jpg")`;
+  }
+  if (weatherDescription === "shower rain" || "rain") {
+    document.body.style.backgroundImage === `url("images/rainy1.jpg")`;
+  }
+  if (weatherDescription === "snow") {
+    document.body.style.backgroundImage = `url("images/snowy.jpg")`;
+  }
+  if (weatherDescription === "thunderstorm") {
+    document.body.style.backgroundImage === `url("images/stormy.jpg")`;
+  }
+  if (weatherDescription === "mist") {
+    document.body.style.backgroundImage = `url("images/misty.jpg")`;
   }
 
   let feelsLike = document.querySelector("#feels-like");
